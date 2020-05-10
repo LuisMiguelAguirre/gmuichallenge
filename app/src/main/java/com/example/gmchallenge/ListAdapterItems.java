@@ -42,10 +42,10 @@ public class ListAdapterItems extends RecyclerView.Adapter<ListAdapterItems.List
         String mCurrent = items.get(position).name;
         holder.itemView.setText(mCurrent);
 
-        holder.itemView.setBackgroundColor(mInflater.getContext().getResources().getColor(R.color.rowUnselected));
+        holder.itemView.setTextColor(mInflater.getContext().getResources().getColor(R.color.rowUnselected));
 
         if (selectedItem == position) {
-            holder.itemView.setBackgroundColor(mInflater.getContext().getResources().getColor(R.color.rowSelected));
+            holder.itemView.setTextColor(mInflater.getContext().getResources().getColor(R.color.rowSelected));
         }
     }
 
@@ -73,7 +73,7 @@ public class ListAdapterItems extends RecyclerView.Adapter<ListAdapterItems.List
         @Override
         public void onClick(View v) {
 
-            Toast.makeText(v.getContext(), "Item " + getAdapterPosition() + 1, Toast.LENGTH_SHORT).show();
+            Toast.makeText(v.getContext(), "Item " + (getAdapterPosition() + 1), Toast.LENGTH_SHORT).show();
 
             int previousItem = selectedItem;
             selectedItem = getAdapterPosition();

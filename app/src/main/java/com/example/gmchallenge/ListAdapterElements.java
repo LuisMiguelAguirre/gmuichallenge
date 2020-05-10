@@ -38,10 +38,10 @@ public class ListAdapterElements extends RecyclerView.Adapter<ListAdapterElement
         String mCurrent = elements.get(position).name;
         holder.itemView.setText(mCurrent);
 
-        holder.itemView.setBackgroundColor(mInflater.getContext().getResources().getColor(R.color.rowUnselected));
+        holder.itemView.setTextColor(mInflater.getContext().getResources().getColor(R.color.rowUnselected));
 
         if (selectedItem == position) {
-            holder.itemView.setBackgroundColor(mInflater.getContext().getResources().getColor(R.color.rowSelected));
+            holder.itemView.setTextColor(mInflater.getContext().getResources().getColor(R.color.rowSelected));
         }
     }
 
@@ -67,7 +67,7 @@ public class ListAdapterElements extends RecyclerView.Adapter<ListAdapterElement
             notifyItemChanged(previousItem);
             notifyItemChanged(selectedItem);
 
-            Toast.makeText(v.getContext(), "Element " + getAdapterPosition() + 1, Toast.LENGTH_SHORT).show();
+            Toast.makeText(v.getContext(), "Element " + (getAdapterPosition() + 1), Toast.LENGTH_SHORT).show();
             elementCallback.onClickElementCallBack(getAdapterPosition());
         }
     }
