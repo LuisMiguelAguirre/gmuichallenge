@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         super.onConfigurationChanged(newConfig);
 
 
-        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE || getSmallestScreenWidthDp() > 943) {
             portraitView = null;
             landscapeView = new LandscapeView(LayoutInflater.from(this), null, this);
             setContentView(landscapeView.getRootView());
@@ -46,6 +46,12 @@ public class MainActivity extends AppCompatActivity {
             setContentView(portraitView.getRootView());
         }
 
+    }
+
+    private int getSmallestScreenWidthDp() {
+        Configuration configuration = getResources().getConfiguration();
+        int smallestScreenWidthDp = configuration.smallestScreenWidthDp;
+        return smallestScreenWidthDp;
     }
 
     public static List<Element> provideData() {
