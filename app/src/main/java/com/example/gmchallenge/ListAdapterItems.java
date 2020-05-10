@@ -32,7 +32,7 @@ public class ListAdapterItems extends RecyclerView.Adapter<ListAdapterItems.List
 
         View mItemView = mInflater.inflate(R.layout.item, parent, false);
 
-        return new ListViewHolder(mItemView, this);
+        return new ListViewHolder(mItemView);
 
     }
 
@@ -62,14 +62,12 @@ public class ListAdapterItems extends RecyclerView.Adapter<ListAdapterItems.List
 
     public class ListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-        private final ListAdapterItems listAdapter;
         private TextView itemView;
 
-        public ListViewHolder(@NonNull View itemView, ListAdapterItems listAdapter) {
+        public ListViewHolder(@NonNull View itemView) {
             super(itemView);
             this.itemView = itemView.findViewById(R.id.item_name);
             this.itemView.setOnClickListener(this);
-            this.listAdapter = listAdapter;
         }
 
         @Override
