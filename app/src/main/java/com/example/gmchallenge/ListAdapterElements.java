@@ -38,10 +38,10 @@ public class ListAdapterElements extends RecyclerView.Adapter<ListAdapterElement
         String mCurrent = elements.get(position).name;
         holder.itemView.setText(mCurrent);
 
-        holder.itemView.setBackgroundColor(mInflater.getContext().getResources().getColor(R.color.colorAccent));
+        holder.itemView.setBackgroundColor(mInflater.getContext().getResources().getColor(R.color.rowUnselected));
 
         if (selectedItem == position) {
-            holder.itemView.setBackgroundColor(mInflater.getContext().getResources().getColor(R.color.colorPrimaryDark));
+            holder.itemView.setBackgroundColor(mInflater.getContext().getResources().getColor(R.color.rowSelected));
         }
     }
 
