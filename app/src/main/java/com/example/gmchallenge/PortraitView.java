@@ -30,9 +30,8 @@ public class PortraitView implements NavigationView.OnNavigationItemSelectedList
 
 
     public PortraitView(final LayoutInflater inflater, final ViewGroup parent, final ActivityCallback activityCallback) {
-
-        rootView = inflater.inflate(R.layout.activity_main, parent, false);
         this.activityCallback = activityCallback;
+        rootView = inflater.inflate(R.layout.activity_main, parent, false);
     }
 
     public View getRootView() {

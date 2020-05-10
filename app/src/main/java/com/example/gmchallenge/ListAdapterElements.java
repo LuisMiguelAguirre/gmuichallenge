@@ -15,14 +15,14 @@ import java.util.List;
 public class ListAdapterElements extends RecyclerView.Adapter<ListAdapterElements.ListViewHolder> {
     private final LayoutInflater mInflater;
     private final List<Element> elements;
-    private final LandscapeView landscapeView;
+    private final ElementCallback elementCallback;
     private  int selectedItem;
 
-    public ListAdapterElements(Context context, List<Element> elements, LandscapeView landscapeView, int elementPosition) {
+    public ListAdapterElements(Context context, List<Element> elements, int elementPosition, ElementCallback elementCallback) {
         mInflater = LayoutInflater.from(context);
         this.elements = elements;
-        this.landscapeView = landscapeView;
         this.selectedItem = elementPosition;
+        this.elementCallback = elementCallback;
     }
 
     @NonNull
@@ -75,8 +75,7 @@ public class ListAdapterElements extends RecyclerView.Adapter<ListAdapterElement
             notifyItemChanged(selectedItem);
 
             Toast.makeText(v.getContext(), getAdapterPosition() + "", Toast.LENGTH_SHORT).show();
-            landscapeView.onClickElementCallBack(getAdapterPosition());
-
+            elementCallback.onClickElementCallBack(getAdapterPosition());
         }
     }
 }
