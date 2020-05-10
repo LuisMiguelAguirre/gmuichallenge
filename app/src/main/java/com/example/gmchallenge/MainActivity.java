@@ -23,38 +23,50 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        portraitView = new PortraitView(LayoutInflater.from(this), null, this);
-        setContentView(portraitView.getRootView());
-
+        if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            setLandscapeView();
+        } else {
+            setPortraitView();
+        }
     }
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-
-
         if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE || getSmallestScreenWidthDp() > 943) {
-            portraitView = null;
-            landscapeView = new LandscapeView(LayoutInflater.from(this), null, this);
-            setContentView(landscapeView.getRootView());
-            landscapeView.setData(provideData(), elementPosition, itemPosition);
+            setLandscapeView();
         } else {
-            landscapeView = null;
-            portraitView = new PortraitView(LayoutInflater.from(this), null, this);
-            portraitView.setData(provideData(), elementPosition, itemPosition);
-            setContentView(portraitView.getRootView());
+            setPortraitView();
         }
+    }
 
+    private void setLandscapeView() {
+        portraitView = null;
+        landscapeView = new LandscapeView(LayoutInflater.from(this), null, this);
+        setContentView(landscapeView.getRootView());
+        landscapeView.setData(provideData(), elementPosition, itemPosition);
+    }
+
+    private void setPortraitView() {
+        landscapeView = null;
+        portraitView = new PortraitView(LayoutInflater.from(this), null, this);
+        portraitView.setData(provideData(), elementPosition, itemPosition);
+        setContentView(portraitView.getRootView());
     }
 
     private int getSmallestScreenWidthDp() {
         Configuration configuration = getResources().getConfiguration();
-        int smallestScreenWidthDp = configuration.smallestScreenWidthDp;
-        return smallestScreenWidthDp;
+        return configuration.smallestScreenWidthDp;
     }
 
-    public static List<Element> provideData() {
+    public void onPositionSelected(int elementPosition, int itemPosition) {
+        Log.i("Luis", "saving: " + elementPosition + " - " + itemPosition);
+
+        this.elementPosition = elementPosition;
+        this.itemPosition = itemPosition;
+    }
+
+    private static List<Element> provideData() {
 
 
         List<Element> elements = new ArrayList<>();
@@ -139,12 +151,5 @@ public class MainActivity extends AppCompatActivity {
 
         return elements;
 
-    }
-
-    public void onPositionSelected(int elementPosition, int itemPosition) {
-        Log.i("Luis", "saving: " + elementPosition + " - " + itemPosition);
-
-        this.elementPosition = elementPosition;
-        this.itemPosition = itemPosition;
     }
 }
