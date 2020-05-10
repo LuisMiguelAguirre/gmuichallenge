@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -104,6 +105,7 @@ public class PortraitView implements NavigationView.OnNavigationItemSelectedList
         mAdapterItems.setData(this.data.get(elementPosition).items);
         activityCallback.onPositionSelected(elementPosition, 0);
 
+        Toast.makeText(getRootView().getContext(), "Element " + (elementPosition + 1), Toast.LENGTH_SHORT).show();
         return false;
     }
 

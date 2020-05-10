@@ -67,7 +67,7 @@ public class ListAdapterElements extends RecyclerView.Adapter<ListAdapterElement
             notifyItemChanged(previousItem);
             notifyItemChanged(selectedItem);
 
-            Toast.makeText(v.getContext(), getAdapterPosition() + "", Toast.LENGTH_SHORT).show();
+            Toast.makeText(v.getContext(), "Element " + getAdapterPosition() + 1, Toast.LENGTH_SHORT).show();
             elementCallback.onClickElementCallBack(getAdapterPosition());
         }
     }
