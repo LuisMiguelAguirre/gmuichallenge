@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 
 import java.util.ArrayList;
@@ -12,10 +11,8 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements ActivityCallback {
 
-    private PortraitView portraitView;
-    private LandscapeView landscapeView;
-    private int elementPosition;
-    private int itemPosition;
+    private int initialElementPosition;
+    private int initialItemPosition;
 
 
     @Override
@@ -39,15 +36,15 @@ public class MainActivity extends AppCompatActivity implements ActivityCallback 
     }
 
     private void setLandscapeView() {
-        landscapeView = new LandscapeView(LayoutInflater.from(this), null,this);
+        LandscapeView landscapeView = new LandscapeView(LayoutInflater.from(this), null, this);
         setContentView(landscapeView.getRootView());
-        landscapeView.setData(provideData(), elementPosition, itemPosition);
+        landscapeView.setData(provideData(), initialElementPosition, initialItemPosition);
     }
 
     private void setPortraitView() {
-        portraitView = new PortraitView(LayoutInflater.from(this), null,this);
+        PortraitView portraitView = new PortraitView(LayoutInflater.from(this), null, this);
         setContentView(portraitView.getRootView());
-        portraitView.setData(provideData(), elementPosition, itemPosition);
+        portraitView.setData(provideData(), initialElementPosition, initialItemPosition);
     }
 
     private int getSmallestScreenWidthDp() {
@@ -146,8 +143,8 @@ public class MainActivity extends AppCompatActivity implements ActivityCallback 
 
     @Override
     public void onPositionSelected(int elementPosition, int itemPosition) {
-        this.elementPosition = elementPosition;
-        this.itemPosition = itemPosition;
+        this.initialElementPosition = elementPosition;
+        this.initialItemPosition = itemPosition;
     }
 }
 

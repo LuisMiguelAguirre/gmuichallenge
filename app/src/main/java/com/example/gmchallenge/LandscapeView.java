@@ -27,15 +27,15 @@ public class LandscapeView implements ItemCallback, ElementCallback{
         return rootView;
     }
 
-    public void setData(List<Element> data, int elementPosition, int itemPosition) {
+    public void setData(List<Element> data, int initialElementPosition, int initialItemPosition) {
         this.data = data;
         RecyclerView elementsList = findViewById(R.id.list_elements);
-        ListAdapterElements mAdapterElements = new ListAdapterElements(getRootView().getContext(), data, elementPosition, this);
+        ListAdapterElements mAdapterElements = new ListAdapterElements(getRootView().getContext(), data, initialElementPosition, this);
         elementsList.setAdapter(mAdapterElements);
         elementsList.setLayoutManager(new LinearLayoutManager(getRootView().getContext()));
 
         RecyclerView itemList = findViewById(R.id.list_items);
-        mAdapterItems = new ListAdapterItems(getRootView().getContext(), this.data.get(elementPosition).items, itemPosition, this);
+        mAdapterItems = new ListAdapterItems(getRootView().getContext(), this.data.get(initialElementPosition).items, initialItemPosition, this);
         itemList.setAdapter(mAdapterItems);
         itemList.setLayoutManager(new LinearLayoutManager(getRootView().getContext()));
 

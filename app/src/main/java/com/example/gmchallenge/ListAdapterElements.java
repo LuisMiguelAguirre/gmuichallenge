@@ -16,28 +16,25 @@ public class ListAdapterElements extends RecyclerView.Adapter<ListAdapterElement
     private final LayoutInflater mInflater;
     private final List<Element> elements;
     private final ElementCallback elementCallback;
-    private  int selectedItem;
+    private int selectedItem;
 
-    public ListAdapterElements(Context context, List<Element> elements, int elementPosition, ElementCallback elementCallback) {
+    public ListAdapterElements(Context context, List<Element> elements, int initialElementPosition, ElementCallback elementCallback) {
         mInflater = LayoutInflater.from(context);
         this.elements = elements;
-        this.selectedItem = elementPosition;
+        this.selectedItem = initialElementPosition;
         this.elementCallback = elementCallback;
     }
 
     @NonNull
     @Override
     public ListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
         View mItemView = mInflater.inflate(R.layout.item, parent, false);
-
         return new ListViewHolder(mItemView);
 
     }
 
     @Override
     public void onBindViewHolder(@NonNull ListViewHolder holder, int position) {
-
         String mCurrent = elements.get(position).name;
         holder.itemView.setText(mCurrent);
 
@@ -54,7 +51,6 @@ public class ListAdapterElements extends RecyclerView.Adapter<ListAdapterElement
     }
 
     public class ListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-
         private TextView itemView;
 
         public ListViewHolder(@NonNull View itemView) {
@@ -65,7 +61,6 @@ public class ListAdapterElements extends RecyclerView.Adapter<ListAdapterElement
 
         @Override
         public void onClick(View v) {
-
             int previousItem = selectedItem;
             selectedItem = getAdapterPosition();
 

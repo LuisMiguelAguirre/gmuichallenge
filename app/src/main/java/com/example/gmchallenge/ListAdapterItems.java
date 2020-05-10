@@ -19,10 +19,10 @@ public class ListAdapterItems extends RecyclerView.Adapter<ListAdapterItems.List
     private  int selectedItem;
 
 
-    public ListAdapterItems(Context context, List<Item> items, int itemPosition, ItemCallback itemCallback) {
+    public ListAdapterItems(Context context, List<Item> items, int initialItemPosition, ItemCallback itemCallback) {
         mInflater = LayoutInflater.from(context);
         this.items = items;
-        this.selectedItem = itemPosition;
+        this.selectedItem = initialItemPosition;
         this.itemCallback = itemCallback;
     }
 
