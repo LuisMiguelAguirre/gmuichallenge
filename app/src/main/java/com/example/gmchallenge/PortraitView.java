@@ -1,5 +1,7 @@
 package com.example.gmchallenge;
 
+import android.app.Activity;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -7,6 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -26,11 +32,35 @@ public class PortraitView implements NavigationView.OnNavigationItemSelectedList
     private int elementPosition;
     private int itemPosition;
     private NavigationView navigationView;
+    private Toolbar toolbar;
+    private DrawerLayout drawerLayout;
 
 
     public PortraitView(final LayoutInflater inflater, final ViewGroup parent, final ActivityCallback activityCallback) {
         this.activityCallback = activityCallback;
         rootView = inflater.inflate(R.layout.activity_main, parent, false);
+        setupToolbarMenu();
+        setupNavigationDrawerMenu();
+    }
+
+    private void setupNavigationDrawerMenu() {
+        navigationView = findViewById(R.id.navigation_view);
+        drawerLayout = findViewById(R.id.drawer_layout);
+        navigationView.setNavigationItemSelectedListener(this);
+
+        ActionBarDrawerToggle drawerToggle = new ActionBarDrawerToggle((Activity) getRootView().getContext(),
+                drawerLayout,
+                toolbar,
+                R.string.drawer_open,
+                R.string.drawer_close);
+
+        drawerLayout.addDrawerListener(drawerToggle);
+        drawerToggle.syncState();
+    }
+
+    private void setupToolbarMenu() {
+        toolbar = findViewById(R.id.toolbar);
+       // toolbar.setTitle("List of items");
     }
 
     public View getRootView() {
@@ -39,9 +69,6 @@ public class PortraitView implements NavigationView.OnNavigationItemSelectedList
 
     public void setData(List<Element> data, int elementPosition, int itemPosition) {
         this.data = data;
-
-        navigationView = findViewById(R.id.navigation_view);
-        navigationView.setNavigationItemSelectedListener(this);
 
         final Menu menu = navigationView.getMenu();
 
@@ -69,6 +96,9 @@ public class PortraitView implements NavigationView.OnNavigationItemSelectedList
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+
+        closeDrawer();
+
         navigationView.getMenu().getItem(elementPosition).setChecked(false);
         elementPosition = items.indexOf(menuItem);
         navigationView.getMenu().getItem(elementPosition).setChecked(true);
@@ -76,6 +106,10 @@ public class PortraitView implements NavigationView.OnNavigationItemSelectedList
         activityCallback.onPositionSelected(elementPosition, 0);
 
         return false;
+    }
+
+    private void closeDrawer() {
+        drawerLayout.closeDrawer(GravityCompat.START);
     }
 
     @Override
