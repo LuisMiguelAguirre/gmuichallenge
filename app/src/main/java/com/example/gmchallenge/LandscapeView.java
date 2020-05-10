@@ -16,7 +16,6 @@ public class LandscapeView implements ItemCallback, ElementCallback{
     private List<Element> data;
     private ListAdapterItems mAdapterItems;
     private int elementPosition = 0;
-    private int itemPosition = 0;
 
     public LandscapeView(final LayoutInflater inflater, final ViewGroup parent, final ActivityCallback activityCallback) {
         this.activityCallback = activityCallback;
@@ -48,8 +47,7 @@ public class LandscapeView implements ItemCallback, ElementCallback{
 
     @Override
     public void onClickItemCallBack(int position) {
-        itemPosition = position;
-        activityCallback.onPositionSelected(elementPosition, itemPosition);
+        activityCallback.onPositionSelected(elementPosition, position);
     }
 
     @Override
