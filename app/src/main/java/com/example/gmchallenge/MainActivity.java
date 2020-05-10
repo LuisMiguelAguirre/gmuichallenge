@@ -110,18 +110,13 @@ public class MainActivity extends AppCompatActivity implements ActivityCallback 
         element1.name = "Element 1";
         element1.items = items1;
 
-
         Element element2 = new Element();
         element2.name = "Element 2";
         element2.items = items2;
 
-
-
         Element element3 = new Element();
         element3.name = "Element 3";
         element3.items = items3;
-
-
 
         Element element4 = new Element();
         element4.name = "Element 4";

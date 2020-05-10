@@ -34,7 +34,7 @@ public class ListItemsAdapter extends RecyclerView.Adapter<ListItemsAdapter.List
     @Override
     public ListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View mItemView = inflater.inflate(R.layout.item, parent, false);
+        View mItemView = inflater.inflate(R.layout.recyclerview_item, parent, false);
 
         return new ListViewHolder(mItemView);
 
