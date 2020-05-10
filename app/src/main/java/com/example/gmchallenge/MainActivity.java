@@ -15,9 +15,9 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private PortraitView portraitView;
+    private LandscapeView landscapeView;
     private int elementPosition;
     private int itemPosition;
-    private LandscapeView landscapeView;
 
 
     @Override
@@ -66,6 +66,8 @@ public class MainActivity extends AppCompatActivity {
         this.itemPosition = itemPosition;
     }
 
+    //TODO get data from API, use adapter pattern to convert API data into Element and Item,
+    //so that the code does not have to be modify
     private static List<Element> provideData() {
 
 
