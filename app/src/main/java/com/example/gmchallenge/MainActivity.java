@@ -4,14 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 
+import com.example.gmchallenge.di.ContextModule;
+import com.example.gmchallenge.di.DaggerViewComponent;
+import com.example.gmchallenge.di.ViewComponent;
 import com.example.gmchallenge.model.Element;
 import com.example.gmchallenge.model.Item;
 import com.example.gmchallenge.view.landview.LandscapeView;
-import com.example.gmchallenge.view.landview.LandscapeViewImp;
 import com.example.gmchallenge.view.portview.PortraitView;
-import com.example.gmchallenge.view.portview.PortraitViewImp;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,10 +20,13 @@ public class MainActivity extends AppCompatActivity implements ActivityCallback 
 
     private int initialElementPosition;
     private int initialItemPosition;
+    private ViewComponent viewDependencies;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setupDagger();
         setView(this.getResources().getConfiguration());
     }
 
@@ -46,13 +49,13 @@ public class MainActivity extends AppCompatActivity implements ActivityCallback 
     }
 
     private void setLandscapeView() {
-        LandscapeView landscapeView = new LandscapeViewImp(LayoutInflater.from(this), null, this);
+        LandscapeView landscapeView = viewDependencies.getLandscapeView();
         setContentView(landscapeView.getRootView());
         landscapeView.setData(getData(), initialElementPosition, initialItemPosition);
     }
 
     private void setPortraitView() {
-        PortraitView portraitView = new PortraitViewImp(LayoutInflater.from(this), null, this);
+        PortraitView portraitView = viewDependencies.getPortraitView();
         setContentView(portraitView.getRootView());
         portraitView.setData(getData(), initialElementPosition, initialItemPosition);
     }
@@ -60,6 +63,12 @@ public class MainActivity extends AppCompatActivity implements ActivityCallback 
     private int getSmallestScreenWidthDp() {
         Configuration configuration = getResources().getConfiguration();
         return configuration.smallestScreenWidthDp;
+    }
+
+    private void setupDagger() {
+        viewDependencies = DaggerViewComponent.builder()
+                .contextModule(new ContextModule(this))
+                .build();
     }
 
     @Override
