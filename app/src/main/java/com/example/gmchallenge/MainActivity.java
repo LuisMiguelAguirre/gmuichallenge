@@ -1,13 +1,11 @@
 package com.example.gmchallenge;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
