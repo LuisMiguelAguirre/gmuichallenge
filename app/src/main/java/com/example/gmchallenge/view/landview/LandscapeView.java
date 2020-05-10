@@ -44,6 +44,7 @@ public class LandscapeView extends BaseView implements ItemCallback, ElementCall
     }
 
     private void setupElementsList(int initialElementPosition) {
+        this.elementPosition = initialElementPosition;
         RecyclerView elementsList = findViewById(R.id.list_elements);
         ListElementsAdapter elementsAdapter = new ListElementsAdapter(getRootView().getContext(), this.data, initialElementPosition, this);
         elementsList.setAdapter(elementsAdapter);
