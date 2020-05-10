@@ -4,13 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 
 import com.example.gmchallenge.model.Element;
 import com.example.gmchallenge.model.Item;
 import com.example.gmchallenge.view.landview.LandscapeView;
+import com.example.gmchallenge.view.landview.LandscapeViewImp;
 import com.example.gmchallenge.view.portview.PortraitView;
+import com.example.gmchallenge.view.portview.PortraitViewImp;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,13 +46,13 @@ public class MainActivity extends AppCompatActivity implements ActivityCallback 
     }
 
     private void setLandscapeView() {
-        LandscapeView landscapeView = new LandscapeView(LayoutInflater.from(this), null, this);
+        LandscapeView landscapeView = new LandscapeViewImp(LayoutInflater.from(this), null, this);
         setContentView(landscapeView.getRootView());
         landscapeView.setData(getData(), initialElementPosition, initialItemPosition);
     }
 
     private void setPortraitView() {
-        PortraitView portraitView = new PortraitView(LayoutInflater.from(this), null, this);
+        PortraitView portraitView = new PortraitViewImp(LayoutInflater.from(this), null, this);
         setContentView(portraitView.getRootView());
         portraitView.setData(getData(), initialElementPosition, initialItemPosition);
     }
