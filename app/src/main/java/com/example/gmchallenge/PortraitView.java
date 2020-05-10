@@ -16,7 +16,7 @@ import com.google.android.material.navigation.NavigationView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PortraitView implements NavigationView.OnNavigationItemSelectedListener {
+public class PortraitView implements NavigationView.OnNavigationItemSelectedListener, ItemCallback{
 
     private final View rootView;
     private final ActivityCallback activityCallback;
@@ -60,12 +60,9 @@ public class PortraitView implements NavigationView.OnNavigationItemSelectedList
 
 
         itemList = findViewById(R.id.list_items);
-        mAdapterItems = new ListAdapterItems(getRootView().getContext(), this.data.get(elementPosition).items, null, this, itemPosition);
+        mAdapterItems = new ListAdapterItems(getRootView().getContext(), this.data.get(elementPosition).items, itemPosition, this);
         itemList.setAdapter(mAdapterItems);
         itemList.setLayoutManager(new LinearLayoutManager(getRootView().getContext()));
-
-
-
     }
 
     private <T extends View> T findViewById(int id) {
@@ -83,8 +80,8 @@ public class PortraitView implements NavigationView.OnNavigationItemSelectedList
         return false;
     }
 
+    @Override
     public void onClickItemCallBack(int position) {
-        Toast.makeText(getRootView().getContext(), "Item position: " + position, Toast.LENGTH_SHORT).show();
         itemPosition = position;
         activityCallback.onPositionSelected(elementPosition, itemPosition);
     }

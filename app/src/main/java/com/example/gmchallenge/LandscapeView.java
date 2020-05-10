@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class LandscapeView {
+public class LandscapeView implements ItemCallback{
 
     private final View rootView;
     private final ActivityCallback activityCallback;
@@ -39,7 +39,7 @@ public class LandscapeView {
 
 
         itemList = findViewById(R.id.list_items);
-        mAdapterItems = new ListAdapterItems(getRootView().getContext(), this.data.get(elementPosition).items, this, null, itemPosition);
+        mAdapterItems = new ListAdapterItems(getRootView().getContext(), this.data.get(elementPosition).items, itemPosition, this);
         itemList.setAdapter(mAdapterItems);
         itemList.setLayoutManager(new LinearLayoutManager(getRootView().getContext()));
 
@@ -57,9 +57,13 @@ public class LandscapeView {
 
     }
 
+    @Override
     public void onClickItemCallBack(int position) {
-        Toast.makeText(getRootView().getContext(), "Item position: " + position, Toast.LENGTH_SHORT).show();
         itemPosition = position;
         activityCallback.onPositionSelected(elementPosition, itemPosition);
     }
+}
+
+interface ItemCallback {
+    void onClickItemCallBack(int position);
 }

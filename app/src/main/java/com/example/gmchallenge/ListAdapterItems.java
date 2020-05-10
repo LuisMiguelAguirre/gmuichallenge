@@ -14,20 +14,16 @@ import java.util.List;
 
 public class ListAdapterItems extends RecyclerView.Adapter<ListAdapterItems.ListViewHolder> {
     private final LayoutInflater mInflater;
-    private final PortraitView portraitView;
+    private final ItemCallback itemCallback;
     private List<Item> items;
-    private final LandscapeView landscapeView;
     private  int selectedItem;
 
 
-    public ListAdapterItems(Context context, List<Item> items, LandscapeView landscapeView, PortraitView portraitView, int itemPosition) {
+    public ListAdapterItems(Context context, List<Item> items, int itemPosition, ItemCallback itemCallback) {
         mInflater = LayoutInflater.from(context);
         this.items = items;
-        this.landscapeView = landscapeView;
-        this.portraitView = portraitView;
         this.selectedItem = itemPosition;
-
-
+        this.itemCallback = itemCallback;
     }
 
     @NonNull
@@ -86,12 +82,7 @@ public class ListAdapterItems extends RecyclerView.Adapter<ListAdapterItems.List
 
             notifyItemChanged(previousItem);
             notifyItemChanged(selectedItem);
-
-            if (landscapeView != null)
-                landscapeView.onClickItemCallBack(getAdapterPosition());
-
-            if (portraitView !=null)
-                portraitView.onClickItemCallBack(getAdapterPosition());
+            itemCallback.onClickItemCallBack(getAdapterPosition());
         }
     }
 }
