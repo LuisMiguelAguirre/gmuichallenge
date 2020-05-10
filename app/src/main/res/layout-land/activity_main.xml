@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    >
+
+    <include
+        android:id="@+id/list_elements"
+        android:background="@color/colorAccent"
+        layout="@layout/recyclerview_container"/>
+
+    <include
+        android:id="@+id/list_items"
+        android:background="@color/colorPrimaryDark"
+        layout="@layout/recyclerview_container"/>
+
+</LinearLayout>
