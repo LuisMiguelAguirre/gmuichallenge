@@ -39,17 +39,15 @@ public class MainActivity extends AppCompatActivity implements ActivityCallback 
     }
 
     private void setLandscapeView() {
-        portraitView = null;
         landscapeView = new LandscapeView(LayoutInflater.from(this), null,this);
         setContentView(landscapeView.getRootView());
         landscapeView.setData(provideData(), elementPosition, itemPosition);
     }
 
     private void setPortraitView() {
-        landscapeView = null;
         portraitView = new PortraitView(LayoutInflater.from(this), null,this);
-        portraitView.setData(provideData(), elementPosition, itemPosition);
         setContentView(portraitView.getRootView());
+        portraitView.setData(provideData(), elementPosition, itemPosition);
     }
 
     private int getSmallestScreenWidthDp() {
