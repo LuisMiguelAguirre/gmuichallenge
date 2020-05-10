@@ -1,4 +1,4 @@
-package com.example.gmchallenge;
+package com.example.gmchallenge.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,6 +9,10 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.gmchallenge.R;
+import com.example.gmchallenge.model.Element;
+import com.example.gmchallenge.view.ElementCallback;
 
 import java.util.List;
 

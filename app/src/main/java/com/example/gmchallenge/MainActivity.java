@@ -6,6 +6,11 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 
+import com.example.gmchallenge.model.Element;
+import com.example.gmchallenge.model.Item;
+import com.example.gmchallenge.view.landview.LandscapeView;
+import com.example.gmchallenge.view.portview.PortraitView;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,37 +19,40 @@ public class MainActivity extends AppCompatActivity implements ActivityCallback 
     private int initialElementPosition;
     private int initialItemPosition;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE || getSmallestScreenWidthDp() > 943) {
-            setLandscapeView();
-        } else {
-            setPortraitView();
-        }
+        setView(this.getResources().getConfiguration());
     }
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE || getSmallestScreenWidthDp() > 943) {
+        setView(newConfig);
+    }
+
+    private void setView(Configuration newConfig) {
+        if (isLandscapeView(newConfig)) {
             setLandscapeView();
         } else {
             setPortraitView();
         }
     }
 
+    private boolean isLandscapeView(Configuration configuration) {
+        return configuration.orientation == Configuration.ORIENTATION_LANDSCAPE || getSmallestScreenWidthDp() > 943;
+    }
+
     private void setLandscapeView() {
         LandscapeView landscapeView = new LandscapeView(LayoutInflater.from(this), null, this);
         setContentView(landscapeView.getRootView());
-        landscapeView.setData(provideData(), initialElementPosition, initialItemPosition);
+        landscapeView.setData(getData(), initialElementPosition, initialItemPosition);
     }
 
     private void setPortraitView() {
         PortraitView portraitView = new PortraitView(LayoutInflater.from(this), null, this);
         setContentView(portraitView.getRootView());
-        portraitView.setData(provideData(), initialElementPosition, initialItemPosition);
+        portraitView.setData(getData(), initialElementPosition, initialItemPosition);
     }
 
     private int getSmallestScreenWidthDp() {
@@ -52,9 +60,14 @@ public class MainActivity extends AppCompatActivity implements ActivityCallback 
         return configuration.smallestScreenWidthDp;
     }
 
-    //TODO get data from API, use adapter pattern to convert API data into Element and Item,
-    //so that the code does not have to be modify
-    private static List<Element> provideData() {
+    @Override
+    public void onPositionSelected(int elementPosition, int itemPosition) {
+        this.initialElementPosition = elementPosition;
+        this.initialItemPosition = itemPosition;
+    }
+
+    //TODO get data from API, use adapter pattern to convert API data into Element and Item objects, so that the code does not have to be modify
+    private static List<Element> getData() {
 
 
         List<Element> elements = new ArrayList<>();
@@ -140,14 +153,4 @@ public class MainActivity extends AppCompatActivity implements ActivityCallback 
         return elements;
 
     }
-
-    @Override
-    public void onPositionSelected(int elementPosition, int itemPosition) {
-        this.initialElementPosition = elementPosition;
-        this.initialItemPosition = itemPosition;
-    }
-}
-
-interface ActivityCallback {
-    void onPositionSelected(final int elementPosition, final int itemPosition);
 }

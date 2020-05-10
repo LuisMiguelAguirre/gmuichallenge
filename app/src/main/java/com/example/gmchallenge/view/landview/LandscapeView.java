@@ -1,4 +1,4 @@
-package com.example.gmchallenge;
+package com.example.gmchallenge.view.landview;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,9 +7,17 @@ import android.view.ViewGroup;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.gmchallenge.ActivityCallback;
+import com.example.gmchallenge.view.ElementCallback;
+import com.example.gmchallenge.view.ItemCallback;
+import com.example.gmchallenge.adapter.ListAdapterElements;
+import com.example.gmchallenge.adapter.ListAdapterItems;
+import com.example.gmchallenge.R;
+import com.example.gmchallenge.model.Element;
+
 import java.util.List;
 
-public class LandscapeView implements ItemCallback, ElementCallback{
+public class LandscapeView implements ItemCallback, ElementCallback {
 
     private final View rootView;
     private final ActivityCallback activityCallback;
@@ -58,10 +66,3 @@ public class LandscapeView implements ItemCallback, ElementCallback{
     }
 }
 
-interface ItemCallback {
-    void onClickItemCallBack(int position);
-}
-
-interface ElementCallback {
-    void onClickElementCallBack(int position);
-}

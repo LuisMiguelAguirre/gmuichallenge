@@ -1,7 +1,6 @@
-package com.example.gmchallenge;
+package com.example.gmchallenge.view.portview;
 
 import android.app.Activity;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,6 +16,11 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.gmchallenge.ActivityCallback;
+import com.example.gmchallenge.view.ItemCallback;
+import com.example.gmchallenge.adapter.ListAdapterItems;
+import com.example.gmchallenge.R;
+import com.example.gmchallenge.model.Element;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
