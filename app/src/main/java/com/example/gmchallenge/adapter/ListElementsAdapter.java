@@ -16,14 +16,14 @@ import com.example.gmchallenge.view.ElementCallback;
 
 import java.util.List;
 
-public class ListAdapterElements extends RecyclerView.Adapter<ListAdapterElements.ListViewHolder> {
-    private final LayoutInflater mInflater;
+public class ListElementsAdapter extends RecyclerView.Adapter<ListElementsAdapter.ListViewHolder> {
+    private final LayoutInflater inflater;
     private final List<Element> elements;
     private final ElementCallback elementCallback;
     private int selectedItem;
 
-    public ListAdapterElements(Context context, List<Element> elements, int initialElementPosition, ElementCallback elementCallback) {
-        mInflater = LayoutInflater.from(context);
+    public ListElementsAdapter(Context context, List<Element> elements, int initialElementPosition, ElementCallback elementCallback) {
+        inflater = LayoutInflater.from(context);
         this.elements = elements;
         this.selectedItem = initialElementPosition;
         this.elementCallback = elementCallback;
@@ -32,7 +32,7 @@ public class ListAdapterElements extends RecyclerView.Adapter<ListAdapterElement
     @NonNull
     @Override
     public ListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View mItemView = mInflater.inflate(R.layout.item, parent, false);
+        View mItemView = inflater.inflate(R.layout.item, parent, false);
         return new ListViewHolder(mItemView);
 
     }
@@ -42,10 +42,10 @@ public class ListAdapterElements extends RecyclerView.Adapter<ListAdapterElement
         String mCurrent = elements.get(position).name;
         holder.itemView.setText(mCurrent);
 
-        holder.itemView.setTextColor(mInflater.getContext().getResources().getColor(R.color.rowUnselected));
+        holder.itemView.setTextColor(inflater.getContext().getResources().getColor(R.color.rowUnselected));
 
         if (selectedItem == position) {
-            holder.itemView.setTextColor(mInflater.getContext().getResources().getColor(R.color.rowSelected));
+            holder.itemView.setTextColor(inflater.getContext().getResources().getColor(R.color.rowSelected));
         }
     }
 

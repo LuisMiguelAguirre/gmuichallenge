@@ -1,55 +1,53 @@
 package com.example.gmchallenge.view.landview;
 
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gmchallenge.ActivityCallback;
+import com.example.gmchallenge.view.BaseView;
 import com.example.gmchallenge.view.ElementCallback;
 import com.example.gmchallenge.view.ItemCallback;
-import com.example.gmchallenge.adapter.ListAdapterElements;
-import com.example.gmchallenge.adapter.ListAdapterItems;
+import com.example.gmchallenge.adapter.ListElementsAdapter;
+import com.example.gmchallenge.adapter.ListItemsAdapter;
 import com.example.gmchallenge.R;
 import com.example.gmchallenge.model.Element;
 
 import java.util.List;
 
-public class LandscapeView implements ItemCallback, ElementCallback {
+public class LandscapeView extends BaseView implements ItemCallback, ElementCallback {
 
-    private final View rootView;
     private final ActivityCallback activityCallback;
     private List<Element> data;
-    private ListAdapterItems mAdapterItems;
+    private ListItemsAdapter itemsAdapter;
     private int elementPosition = 0;
 
     public LandscapeView(final LayoutInflater inflater, final ViewGroup parent, final ActivityCallback activityCallback) {
+        super(inflater, parent);
         this.activityCallback = activityCallback;
-        rootView = inflater.inflate(R.layout.activity_main, parent, false);
-    }
-
-    public View getRootView() {
-        return rootView;
     }
 
     public void setData(List<Element> data, int initialElementPosition, int initialItemPosition) {
         this.data = data;
-        RecyclerView elementsList = findViewById(R.id.list_elements);
-        ListAdapterElements mAdapterElements = new ListAdapterElements(getRootView().getContext(), data, initialElementPosition, this);
-        elementsList.setAdapter(mAdapterElements);
-        elementsList.setLayoutManager(new LinearLayoutManager(getRootView().getContext()));
-
-        RecyclerView itemList = findViewById(R.id.list_items);
-        mAdapterItems = new ListAdapterItems(getRootView().getContext(), this.data.get(initialElementPosition).items, initialItemPosition, this);
-        itemList.setAdapter(mAdapterItems);
-        itemList.setLayoutManager(new LinearLayoutManager(getRootView().getContext()));
+        setupElementsList(initialElementPosition);
+        setupItemsList(initialElementPosition, initialItemPosition);
 
     }
 
-    private <T extends View> T findViewById(int id) {
-        return getRootView().findViewById(id);
+    private void setupItemsList(int initialElementPosition, int initialItemPosition) {
+        RecyclerView itemList = findViewById(R.id.list_items);
+        itemsAdapter = new ListItemsAdapter(getRootView().getContext(), this.data.get(initialElementPosition).items, initialItemPosition, this);
+        itemList.setAdapter(itemsAdapter);
+        itemList.setLayoutManager(new LinearLayoutManager(getRootView().getContext()));
+    }
+
+    private void setupElementsList(int initialElementPosition) {
+        RecyclerView elementsList = findViewById(R.id.list_elements);
+        ListElementsAdapter elementsAdapter = new ListElementsAdapter(getRootView().getContext(), this.data, initialElementPosition, this);
+        elementsList.setAdapter(elementsAdapter);
+        elementsList.setLayoutManager(new LinearLayoutManager(getRootView().getContext()));
     }
 
 
@@ -60,7 +58,7 @@ public class LandscapeView implements ItemCallback, ElementCallback {
 
     @Override
     public void onClickElementCallBack(int position) {
-        mAdapterItems.setData(this.data.get(position).items);
+        itemsAdapter.setData(this.data.get(position).items);
         elementPosition = position;
         activityCallback.onPositionSelected(elementPosition, 0);
     }

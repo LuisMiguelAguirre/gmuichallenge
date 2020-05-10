@@ -16,15 +16,15 @@ import com.example.gmchallenge.view.ItemCallback;
 
 import java.util.List;
 
-public class ListAdapterItems extends RecyclerView.Adapter<ListAdapterItems.ListViewHolder> {
-    private final LayoutInflater mInflater;
+public class ListItemsAdapter extends RecyclerView.Adapter<ListItemsAdapter.ListViewHolder> {
+    private final LayoutInflater inflater;
     private final ItemCallback itemCallback;
     private List<Item> items;
     private  int selectedItem;
 
 
-    public ListAdapterItems(Context context, List<Item> items, int initialItemPosition, ItemCallback itemCallback) {
-        mInflater = LayoutInflater.from(context);
+    public ListItemsAdapter(Context context, List<Item> items, int initialItemPosition, ItemCallback itemCallback) {
+        inflater = LayoutInflater.from(context);
         this.items = items;
         this.selectedItem = initialItemPosition;
         this.itemCallback = itemCallback;
@@ -34,7 +34,7 @@ public class ListAdapterItems extends RecyclerView.Adapter<ListAdapterItems.List
     @Override
     public ListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View mItemView = mInflater.inflate(R.layout.item, parent, false);
+        View mItemView = inflater.inflate(R.layout.item, parent, false);
 
         return new ListViewHolder(mItemView);
 
@@ -46,10 +46,10 @@ public class ListAdapterItems extends RecyclerView.Adapter<ListAdapterItems.List
         String mCurrent = items.get(position).name;
         holder.itemView.setText(mCurrent);
 
-        holder.itemView.setTextColor(mInflater.getContext().getResources().getColor(R.color.rowUnselected));
+        holder.itemView.setTextColor(inflater.getContext().getResources().getColor(R.color.rowUnselected));
 
         if (selectedItem == position) {
-            holder.itemView.setTextColor(mInflater.getContext().getResources().getColor(R.color.rowSelected));
+            holder.itemView.setTextColor(inflater.getContext().getResources().getColor(R.color.rowSelected));
         }
     }
 
