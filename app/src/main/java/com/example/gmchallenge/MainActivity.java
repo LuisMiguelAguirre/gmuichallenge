@@ -93,13 +93,17 @@ public class MainActivity extends AppCompatActivity implements ActivityCallback 
 
 
         items1.add(item1);
-        items1.add(item2);
-        items1.add(item3);
-        items1.add(item4);
 
-
+        items2.add(item1);
         items2.add(item2);
+
+        items3.add(item1);
+        items3.add(item2);
         items3.add(item3);
+
+        items4.add(item1);
+        items4.add(item2);
+        items4.add(item3);
         items4.add(item4);
 
         Element element1 = new Element();
@@ -128,27 +132,6 @@ public class MainActivity extends AppCompatActivity implements ActivityCallback 
         elements.add(element2);
         elements.add(element3);
         elements.add(element4);
-
-        elements.add(element1);
-        elements.add(element2);
-        elements.add(element3);
-        elements.add(element4);
-
-        elements.add(element1);
-        elements.add(element2);
-        elements.add(element3);
-        elements.add(element4);
-
-        elements.add(element1);
-        elements.add(element2);
-        elements.add(element3);
-        elements.add(element4);
-
-        elements.add(element1);
-        elements.add(element2);
-        elements.add(element3);
-        elements.add(element4);
-
 
         return elements;
 
