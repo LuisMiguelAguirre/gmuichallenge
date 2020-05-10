@@ -5,7 +5,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -16,7 +15,7 @@ import com.google.android.material.navigation.NavigationView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PortraitView implements NavigationView.OnNavigationItemSelectedListener, ItemCallback{
+public class PortraitView implements NavigationView.OnNavigationItemSelectedListener, ItemCallback {
 
     private final View rootView;
     private final ActivityCallback activityCallback;

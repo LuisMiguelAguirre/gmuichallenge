@@ -3,7 +3,6 @@ package com.example.gmchallenge;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,11 +14,9 @@ public class LandscapeView implements ItemCallback, ElementCallback{
     private final View rootView;
     private final ActivityCallback activityCallback;
     private List<Element> data;
-    private RecyclerView elementsList;
-    private RecyclerView itemList;
     private ListAdapterItems mAdapterItems;
-    int elementPosition = 0;
-    int itemPosition = 0;
+    private int elementPosition = 0;
+    private int itemPosition = 0;
 
     public LandscapeView(final LayoutInflater inflater, final ViewGroup parent, final ActivityCallback activityCallback) {
         this.activityCallback = activityCallback;
@@ -32,13 +29,12 @@ public class LandscapeView implements ItemCallback, ElementCallback{
 
     public void setData(List<Element> data, int elementPosition, int itemPosition) {
         this.data = data;
-        elementsList = findViewById(R.id.list_elements);
+        RecyclerView elementsList = findViewById(R.id.list_elements);
         ListAdapterElements mAdapterElements = new ListAdapterElements(getRootView().getContext(), data, elementPosition, this);
         elementsList.setAdapter(mAdapterElements);
         elementsList.setLayoutManager(new LinearLayoutManager(getRootView().getContext()));
 
-
-        itemList = findViewById(R.id.list_items);
+        RecyclerView itemList = findViewById(R.id.list_items);
         mAdapterItems = new ListAdapterItems(getRootView().getContext(), this.data.get(elementPosition).items, itemPosition, this);
         itemList.setAdapter(mAdapterItems);
         itemList.setLayoutManager(new LinearLayoutManager(getRootView().getContext()));
