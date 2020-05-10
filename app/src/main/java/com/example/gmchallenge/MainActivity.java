@@ -10,7 +10,7 @@ import android.view.LayoutInflater;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ActivityCallback {
 
     private PortraitView portraitView;
     private LandscapeView landscapeView;
@@ -40,14 +40,14 @@ public class MainActivity extends AppCompatActivity {
 
     private void setLandscapeView() {
         portraitView = null;
-        landscapeView = new LandscapeView(LayoutInflater.from(this), null, this);
+        landscapeView = new LandscapeView(LayoutInflater.from(this), null,this);
         setContentView(landscapeView.getRootView());
         landscapeView.setData(provideData(), elementPosition, itemPosition);
     }
 
     private void setPortraitView() {
         landscapeView = null;
-        portraitView = new PortraitView(LayoutInflater.from(this), null, this);
+        portraitView = new PortraitView(LayoutInflater.from(this), null,this);
         portraitView.setData(provideData(), elementPosition, itemPosition);
         setContentView(portraitView.getRootView());
     }
@@ -55,13 +55,6 @@ public class MainActivity extends AppCompatActivity {
     private int getSmallestScreenWidthDp() {
         Configuration configuration = getResources().getConfiguration();
         return configuration.smallestScreenWidthDp;
-    }
-
-    public void onPositionSelected(int elementPosition, int itemPosition) {
-        Log.i("Luis", "saving: " + elementPosition + " - " + itemPosition);
-
-        this.elementPosition = elementPosition;
-        this.itemPosition = itemPosition;
     }
 
     //TODO get data from API, use adapter pattern to convert API data into Element and Item,
@@ -152,4 +145,14 @@ public class MainActivity extends AppCompatActivity {
         return elements;
 
     }
+
+    @Override
+    public void onPositionSelected(int elementPosition, int itemPosition) {
+        this.elementPosition = elementPosition;
+        this.itemPosition = itemPosition;
+    }
+}
+
+interface ActivityCallback {
+    void onPositionSelected(final int elementPosition, final int itemPosition);
 }

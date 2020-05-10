@@ -19,7 +19,7 @@ import java.util.List;
 public class PortraitView implements NavigationView.OnNavigationItemSelectedListener {
 
     private final View rootView;
-    private final MainActivity activity;
+    private final ActivityCallback activityCallback;
     private List<Element> data;
     private RecyclerView itemList;
     private ListAdapterItems mAdapterItems;
@@ -29,10 +29,10 @@ public class PortraitView implements NavigationView.OnNavigationItemSelectedList
     private NavigationView navigationView;
 
 
-    public PortraitView(LayoutInflater inflater, ViewGroup parent, MainActivity mainActivity) {
+    public PortraitView(final LayoutInflater inflater, final ViewGroup parent, final ActivityCallback activityCallback) {
 
         rootView = inflater.inflate(R.layout.activity_main, parent, false);
-        this.activity = mainActivity;
+        this.activityCallback = activityCallback;
     }
 
     public View getRootView() {
@@ -78,8 +78,7 @@ public class PortraitView implements NavigationView.OnNavigationItemSelectedList
         elementPosition = items.indexOf(menuItem);
         navigationView.getMenu().getItem(elementPosition).setChecked(true);
         mAdapterItems.setData(this.data.get(elementPosition).items);
-
-        activity.onPositionSelected(elementPosition, 0);
+        activityCallback.onPositionSelected(elementPosition, 0);
 
         return false;
     }
@@ -87,7 +86,6 @@ public class PortraitView implements NavigationView.OnNavigationItemSelectedList
     public void onClickItemCallBack(int position) {
         Toast.makeText(getRootView().getContext(), "Item position: " + position, Toast.LENGTH_SHORT).show();
         itemPosition = position;
-        activity.onPositionSelected(elementPosition, itemPosition);
-
+        activityCallback.onPositionSelected(elementPosition, itemPosition);
     }
 }

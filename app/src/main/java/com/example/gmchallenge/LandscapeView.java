@@ -13,7 +13,7 @@ import java.util.List;
 public class LandscapeView {
 
     private final View rootView;
-    private final MainActivity activity;
+    private final ActivityCallback activityCallback;
     private List<Element> data;
     private RecyclerView elementsList;
     private RecyclerView itemList;
@@ -21,11 +21,9 @@ public class LandscapeView {
     int elementPosition = 0;
     int itemPosition = 0;
 
-    public LandscapeView(LayoutInflater inflater, ViewGroup parent, MainActivity mainActivity) {
-
+    public LandscapeView(final LayoutInflater inflater, final ViewGroup parent, final ActivityCallback activityCallback) {
         rootView = inflater.inflate(R.layout.activity_main, parent, false);
-        this.activity = mainActivity;
-
+        this.activityCallback = activityCallback;
     }
 
     public View getRootView() {
@@ -54,15 +52,14 @@ public class LandscapeView {
     public void onClickElementCallBack(int position) {
         mAdapterItems.setData(this.data.get(position).items);
         elementPosition = position;
-        itemPosition = 0;
-        activity.onPositionSelected(elementPosition, itemPosition);
+        activityCallback.onPositionSelected(elementPosition, 0);
+
 
     }
 
     public void onClickItemCallBack(int position) {
         Toast.makeText(getRootView().getContext(), "Item position: " + position, Toast.LENGTH_SHORT).show();
         itemPosition = position;
-        activity.onPositionSelected(elementPosition, itemPosition);
-
+        activityCallback.onPositionSelected(elementPosition, itemPosition);
     }
 }
