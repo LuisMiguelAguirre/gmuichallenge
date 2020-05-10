@@ -4,7 +4,7 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
 
-    <color name="rowSelected">#1031B8</color>
+    <color name="rowSelected">#008577</color>
     <color name="rowUnselected">#000000</color>
 
 </resources>

@@ -17,5 +17,6 @@
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
 
-    <string name="toolbar_title">List of items</string>
+    <string name="item">List of items</string>
+    <string name="element">Elements</string>
 </resources>

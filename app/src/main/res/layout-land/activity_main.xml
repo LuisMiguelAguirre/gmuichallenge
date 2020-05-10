@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    >
+    android:orientation="vertical">
 
-    <include layout="@layout/toolbar"/>
+    <include layout="@layout/toolbar" />
 
     <LinearLayout
-        android:orientation="horizontal" android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
-
-    <include
-        android:id="@+id/list_elements"
-        layout="@layout/recyclerview_container"/>
-
-    <include
-        android:id="@+id/list_items"
         android:layout_width="match_parent"
-        layout="@layout/recyclerview_container"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <include
+            android:id="@+id/list_elements"
+            layout="@layout/recyclerview_container" />
+
+        <include
+            android:id="@+id/list_items"
+            layout="@layout/recyclerview_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 
