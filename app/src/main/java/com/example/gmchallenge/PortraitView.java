@@ -60,7 +60,6 @@ public class PortraitView implements NavigationView.OnNavigationItemSelectedList
 
     private void setupToolbarMenu() {
         toolbar = findViewById(R.id.toolbar);
-       // toolbar.setTitle("List of items");
     }
 
     public View getRootView() {
